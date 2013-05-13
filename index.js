@@ -38,7 +38,8 @@ function HTMLImageElement(width, height) {
         var stream;
 
         if (src.substring(0,4) === 'file') {
-          stream = fs.createReadStream(src.replace('file://', ''));
+          src = src.replace('file://', '').replace(/^\/([a-z]:)/i,'$1');
+          stream = fs.createReadStream(src);
         } else {
           stream = request.get(src);
         }
@@ -91,7 +92,18 @@ HTMLImageElement.prototype.useMap = '';
 HTMLImageElement.prototype.width = 0;
 HTMLImageElement.prototype.height = 0;
 HTMLImageElement.prototype.resolve = function(url) {
-  return urlmaster.resolve('file://' + __dirname, url);
+  var base = __dirname;
+
+  if (this.ownerDocument) {
+    base = (this.ownerDocument.baseURI || base).replace(/\\+/g,'/');
+  }
+
+  if (base.indexOf('://') < 0) {
+    base = 'file://' + base;
+  }
+
+  url = url.replace(/\\+/g,'/').replace(base.replace('file://'));
+  return urlmaster.resolve(base, url);
 };
 
 module.exports.HTMLImageElement = HTMLImageElement;
