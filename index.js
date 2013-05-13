@@ -33,7 +33,7 @@ function HTMLImageElement(width, height) {
       return src;
     },
     set : function(url) {
-      src = that.resolve(url);
+      src = that.resolve(null, url);
       process.nextTick(function() {
         var stream;
 
@@ -91,19 +91,25 @@ HTMLImageElement.prototype.crossOrigin = '';
 HTMLImageElement.prototype.useMap = '';
 HTMLImageElement.prototype.width = 0;
 HTMLImageElement.prototype.height = 0;
-HTMLImageElement.prototype.resolve = function(url) {
-  var base = __dirname;
+HTMLImageElement.prototype.resolve = function(base, url) {
+  var base = base || __dirname;
 
   if (this.ownerDocument) {
     base = (this.ownerDocument.baseURI || base).replace(/\\+/g,'/');
   }
 
   if (base.indexOf('://') < 0) {
-    base = 'file://' + base;
+    base = 'file:///' + base;
   }
 
-  url = url.replace(/\\+/g,'/').replace(base.replace('file://'));
-  return urlmaster.resolve(base, url);
+  if (url.indexOf('://') < 0) {
+    url = 'file:///' + url;
+  }
+
+  url = url.replace(/\\+/g,'/');
+
+  var ret = urlmaster.resolve(base, url);
+  return ret;
 };
 
 module.exports.HTMLImageElement = HTMLImageElement;

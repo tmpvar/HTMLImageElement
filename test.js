@@ -26,12 +26,13 @@ test('windows fs test', function(t) {
 
   var caught = false
   try {
-    i.resolve(
+    var resolved = i.resolve(
       'C:\\Users\\tmpvar\\',
       'C:\\Users\\tmpvar\\path\\to\\test.png'
     );
+
+    t.equal(resolved, 'file:///C:/Users/tmpvar/path/to/test.png');
   } catch(e) {
-    console.log(e);
     caught = true;
   }
 
