@@ -20,6 +20,25 @@ test('async (fs)', function(t) {
 
 });
 
+test('windows fs test', function(t) {
+
+  var i = new Image();
+
+  var caught = false
+  try {
+    i.resolve(
+      'C:\\Users\\tmpvar\\',
+      'C:\\Users\\tmpvar\\path\\to\\test.png'
+    );
+  } catch(e) {
+    console.log(e);
+    caught = true;
+  }
+
+  t.ok(!caught);
+  t.end();
+});
+
 test('async (http)', function(t) {
   var server = http.createServer(function(req, res) {
     res.writeHead(200, { 'Content-type' : 'image/png' });
