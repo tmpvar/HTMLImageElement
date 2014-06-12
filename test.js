@@ -13,6 +13,7 @@ test('async (fs)', function(t) {
     t.ok(i.imageData);
     t.equal(i.imageData.width, 1280);
     t.equal(i.imageData.height, 1112);
+    t.equal(i.complete, true);
     t.end();
   };
 
@@ -61,3 +62,4 @@ test('async (http)', function(t) {
     i.src = 'http://localhost:16892/whatever.png';
   });
 });
+

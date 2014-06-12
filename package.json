@@ -1,6 +1,6 @@
 {
   "name": "htmlimage",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "images, like in the browser, but in node",
   "main": "index.js",
   "scripts": {

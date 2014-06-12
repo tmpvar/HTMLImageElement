@@ -49,6 +49,7 @@ function HTMLImageElement(width, height) {
             trigger('error', err);
           } else {
             that.imageData = data;
+            complete = true;
             trigger('load');
           }
         });
