@@ -12,7 +12,7 @@ __NOTE__: this library currently only works with `png` files
 
 ```javascript
 
-var Image = require('htmlimage').HTMLImageElement;
+var Image = require('htmlimage');
 
 var i = new Image();
 
