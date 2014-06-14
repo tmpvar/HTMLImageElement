@@ -1,8 +1,8 @@
 {
   "name": "htmlimage",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "images, like in the browser, but in node",
-  "main": "index.js",
+  "main": "htmlimage.js",
   "scripts": {
     "test": "node test.js"
   },
@@ -14,7 +14,8 @@
     "HTMLImageElement",
     "image",
     "graphics",
-    "2d"
+    "2d",
+    "png"
   ],
   "author": "Elijah Insua <tmpvar@gmail.com>",
   "license": "MIT",

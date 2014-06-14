@@ -1,4 +1,4 @@
-var Image = require('./').HTMLImageElement;
+var Image = require('./');
 var test = require('tap').test;
 var http = require('http');
 var fs = require('fs');

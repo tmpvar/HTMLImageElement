@@ -115,5 +115,4 @@ HTMLImageElement.prototype.resolve = function(base, url) {
   return ret;
 };
 
-module.exports.HTMLImageElement = HTMLImageElement;
-module.exports.Image = HTMLImageElement;
+module.exports = HTMLImageElement;
